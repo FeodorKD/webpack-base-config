@@ -78,8 +78,8 @@ export function buildLoaders(options: IConfigOptions) : ModuleOptions['rules']{
     return [
         imagesLoader,
         sassLoader,
-        typescriptLoader,
-        //babelLoader,
+        //typescriptLoader,
+        babelLoader,
         svgrLoader
     ];
     
