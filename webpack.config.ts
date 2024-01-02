@@ -1,7 +1,7 @@
-import path from 'path'
-import webpack from 'webpack'
+import path from 'path';
+import webpack from 'webpack';
 import { buildWebpack } from './config/build/buildWebpack';
-import {IConfigPath, TConfigMode, TConfigPlatform} from './config/build/types';
+import { IConfigPath, TConfigMode, TConfigPlatform } from './config/build/types';
 
 interface EnvVariables {
     mode?: TConfigMode,
@@ -17,7 +17,7 @@ export default (env: EnvVariables): webpack.Configuration => {
         output: path.resolve(__dirname, 'dist'),
         public: path.resolve(__dirname, 'public'),
         src: path.resolve(__dirname, 'src')
-    }
+    };
 
     const config: webpack.Configuration = buildWebpack({
         port: env.port ?? 3000,
@@ -25,7 +25,7 @@ export default (env: EnvVariables): webpack.Configuration => {
         paths: paths,
         analyzer: env.analyzer ?? false,
         platform: env.platform ?? 'desktop'
-    })
-    return config
-}
+    });
+    return config;
+};
 

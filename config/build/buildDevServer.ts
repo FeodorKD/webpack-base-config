@@ -1,5 +1,5 @@
-import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
-import { IConfigOptions } from "./types";
+import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
+import { IConfigOptions } from './types';
 
 export function buildDevServer(options: IConfigOptions): DevServerConfiguration {
     return {
@@ -10,5 +10,5 @@ export function buildDevServer(options: IConfigOptions): DevServerConfiguration 
             disableDotRule: true,
         },
         hot: true
-    }
+    };
 }
