@@ -5,8 +5,7 @@ import { buildResolvers } from './buildResolvers';
 import { IConfigOptions } from './types';
 import { buildPlugins } from './buildPluggins';
 
-
-export function buildWebpack(options: IConfigOptions): webpack.Configuration  {
+export function buildWebpack(options: IConfigOptions): webpack.Configuration {
     const isDev = options.mode === 'development';
     const isProd = options.mode === 'production';
     return {
@@ -19,7 +18,7 @@ export function buildWebpack(options: IConfigOptions): webpack.Configuration  {
         },
         plugins: buildPlugins(options),
         module: {
-            rules: buildLoaders(options)
+            rules: buildLoaders(options),
         },
         resolve: buildResolvers(options),
         devtool: isDev && 'inline-source-map',

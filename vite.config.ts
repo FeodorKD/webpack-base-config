@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import viteTsconfigPaths from  'vite-tsconfig-paths';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
@@ -12,17 +12,14 @@ export default defineConfig({
         svgr({
             svgrOptions: {
                 icon: true,
-            }
+            },
         }),
     ],
     server: {
-        // this ensures that the browser opens upon server start
+    // this ensures that the browser opens upon server start
         open: true,
     },
     resolve: {
-        alias: [
-            { find: '@', replacement: '/src' },
-        ]
+        alias: [{ find: '@', replacement: '/src' }],
     },
-
 });

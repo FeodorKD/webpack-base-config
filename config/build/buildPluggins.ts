@@ -19,33 +19,33 @@ export function buildPlugins(options: IConfigOptions): Configuration['plugins'] 
         }),
         /**Позволяет использовать переменные окружения в коде*/
         new webpack.DefinePlugin({
-            __PLATFORM__ : JSON.stringify(options.platform)
+            __PLATFORM__: JSON.stringify(options.platform),
         }),
         /**Вынесение проыерки типов в отдельный процес*/
         new ForkTsCheckerWebpackPlugin(),
-
     ];
 
-    if(isProd) {
-        if(options.analyzer){
+    if (isProd) {
+        if (options.analyzer) {
             plugins.push(new BundleAnalyzerPlugin());
         }
-        plugins.push(new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[name].[contenthash:8].css',
-        }));
-        // plugins.push(new CopyPlugin({
-        //     patterns: [
-        //         { from: path.resolve(options.paths.public, 'locales'), to: path.resolve(options.paths.output, 'locales') },
-        //     ]})
-        // )
+        plugins.push(
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            }),
+        );
+    // plugins.push(new CopyPlugin({
+    //     patterns: [
+    //         { from: path.resolve(options.paths.public, 'locales'), to: path.resolve(options.paths.output, 'locales') },
+    //     ]})
+    // )
     }
 
-    if(isDev) {
+    if (isDev) {
         plugins.push(new webpack.ProgressPlugin());
         plugins.push(new ReactRefreshPlugin());
     }
-    
 
-    return plugins;
+  return plugins;
 }

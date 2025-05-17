@@ -4,10 +4,10 @@ import { buildWebpack } from './config/build/buildWebpack';
 import { IConfigPath, TConfigMode, TConfigPlatform } from './config/build/types';
 
 interface EnvVariables {
-    mode?: TConfigMode,
-    port?: number,
-    analyzer?: boolean,
-    platform?: TConfigPlatform
+  mode?: TConfigMode;
+  port?: number;
+  analyzer?: boolean;
+  platform?: TConfigPlatform;
 }
 
 export default (env: EnvVariables): webpack.Configuration => {
@@ -16,7 +16,7 @@ export default (env: EnvVariables): webpack.Configuration => {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         output: path.resolve(__dirname, 'dist'),
         public: path.resolve(__dirname, 'public'),
-        src: path.resolve(__dirname, 'src')
+        src: path.resolve(__dirname, 'src'),
     };
 
     const config: webpack.Configuration = buildWebpack({
@@ -24,8 +24,7 @@ export default (env: EnvVariables): webpack.Configuration => {
         mode: env.mode ?? 'development',
         paths: paths,
         analyzer: env.analyzer ?? false,
-        platform: env.platform ?? 'desktop'
+        platform: env.platform ?? 'desktop',
     });
     return config;
 };
-

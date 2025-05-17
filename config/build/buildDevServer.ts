@@ -9,6 +9,6 @@ export function buildDevServer(options: IConfigOptions): DevServerConfiguration 
         historyApiFallback: {
             disableDotRule: true,
         },
-        hot: true
+        hot: true,
     };
 }

@@ -4,16 +4,15 @@ import { IConfigOptions } from './types';
 import ReactRefreshTypescript from 'react-refresh-typescript';
 import { buildBabelLoader } from './babel/buildBabelLoader';
 
-export function buildLoaders(options: IConfigOptions) : ModuleOptions['rules']{
+export function buildLoaders(options: IConfigOptions): ModuleOptions['rules'] {
     const isDev = options.mode === 'development';
 
-    const cssLoaderWithModule =  {
+    const cssLoaderWithModule = {
         loader: 'css-loader',
         options: {
             modules: {
-                localIdentName: isDev ? '[path]_[name]__[local]' : '[hash:base64:8]'
+                localIdentName: isDev ? '[path]_[name]__[local]' : '[hash:base64:8]',
             },
-            
         },
     };
 
@@ -37,7 +36,7 @@ export function buildLoaders(options: IConfigOptions) : ModuleOptions['rules']{
     const svgrLoader = {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,
-        use:[
+        use: [
             {
                 loader: '@svgr/webpack',
                 options: {
@@ -48,18 +47,18 @@ export function buildLoaders(options: IConfigOptions) : ModuleOptions['rules']{
                                 name: 'convertColors',
                                 params: {
                                     currentColor: true,
-                                }
-                            }
-                        ]
-                    }
-                }
-            }
+                                },
+                            },
+                        ],
+                    },
+                },
+            },
         ],
     };
     const babelLoader = buildBabelLoader(options);
 
     const typescriptLoader = {
-        //ts-loader умеет работать с jsx, если проект без ts, то используем babel-loader
+    //ts-loader умеет работать с jsx, если проект без ts, то используем babel-loader
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
@@ -67,12 +66,12 @@ export function buildLoaders(options: IConfigOptions) : ModuleOptions['rules']{
                 loader: 'ts-loader',
                 options: {
                     getCustomTransformers: () => ({
-                        before: [isDev && ReactRefreshTypescript()].filter(Boolean)
+                        before: [isDev && ReactRefreshTypescript()].filter(Boolean),
                     }),
-                    transpileOnly: true
-                }
-            }
-        ]
+                    transpileOnly: true,
+                },
+            },
+        ],
     };
 
     return [
@@ -80,7 +79,6 @@ export function buildLoaders(options: IConfigOptions) : ModuleOptions['rules']{
         sassLoader,
         //typescriptLoader,
         babelLoader,
-        svgrLoader
+        svgrLoader,
     ];
-    
 }
